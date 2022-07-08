@@ -1,5 +1,7 @@
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
 
+import Home from "pages/Home";
+
 const colors = {
   brand: {
     900: "#1a365d",
@@ -13,7 +15,7 @@ const theme = extendTheme({ colors });
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <div></div>
+      <Home />
     </ChakraProvider>
   );
 }
