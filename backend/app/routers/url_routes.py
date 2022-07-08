@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.get("/{shortend_url}", response_model=OriginalUrl)
+@router.get("/{shortened_url}", response_model=OriginalUrl)
 def get_original_url_by_shortened_url(shortened_url: str, db: Session = Depends(get_db)):
     original_url = url_service.get_original_url_by_shortened_url(
         db, shortened_url=shortened_url)
