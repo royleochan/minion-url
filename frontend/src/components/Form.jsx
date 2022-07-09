@@ -7,20 +7,27 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-const Form = () => {
+import request from "utils/request";
+
+const Form = ({ setShortenedUrl }) => {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (values) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
-    });
+  const onSubmit = async (values) => {
+    try {
+      const { url } = values;
+      const response = await request.post("/url", {
+        originalUrl: url,
+      });
+      const data = response.data;
+      const { shortenedUrl } = data;
+      setShortenedUrl(process.env.REACT_APP_BACKEND_URL + shortenedUrl);
+    } catch (err) {
+      alert("Error occured, please try again");
+    }
   };
 
   return (
@@ -41,7 +48,7 @@ const Form = () => {
         />
         <FormErrorMessage>{errors.url && errors.url.message}</FormErrorMessage>
       </FormControl>
-      <Button sx={{ mt: 10 }} isLoading={isSubmitting} type="submit">
+      <Button sx={{ mt: 8, mb: 4 }} isLoading={isSubmitting} type="submit">
         Submit
       </Button>
     </form>
