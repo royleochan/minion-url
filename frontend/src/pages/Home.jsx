@@ -11,6 +11,7 @@ import {
 import { ExternalLinkIcon, CopyIcon } from "@chakra-ui/icons";
 
 import minionBackground from "assets/minion.png";
+import ToggleColor from "components/ToggleColor";
 import Form from "components/Form";
 
 const Home = () => {
@@ -40,7 +41,10 @@ const Home = () => {
           style={{ width: 300, height: 300 }}
         />
         <Box>
-          <Heading>Welcome to MinionURL</Heading>
+          <HStack>
+            <Heading>Welcome to MinionURL</Heading>
+            <ToggleColor />
+          </HStack>
           <Text>Easy and fuss-free URL shortener</Text>
         </Box>
       </Box>
