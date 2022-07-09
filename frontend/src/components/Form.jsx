@@ -9,7 +9,7 @@ import {
 
 import request from "utils/request";
 
-const Form = ({ setShortenedUrl }) => {
+const Form = ({ setShortenedUrl, reset }) => {
   const {
     handleSubmit,
     register,
@@ -17,6 +17,7 @@ const Form = ({ setShortenedUrl }) => {
   } = useForm();
 
   const onSubmit = async (values) => {
+    reset();
     try {
       const { url } = values;
       const response = await request.post("/url", {

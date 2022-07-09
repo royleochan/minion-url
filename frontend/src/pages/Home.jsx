@@ -17,6 +17,8 @@ const Home = () => {
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
+  const reset = () => setShortenedUrl("");
+
   const handleCopyToClipboard = () => {
     setIsCopied(true);
     navigator.clipboard.writeText(shortenedUrl);
@@ -53,7 +55,7 @@ const Home = () => {
           border: "1px solid rgba(255, 255, 255, 0.3)",
         }}
       >
-        <Form setShortenedUrl={setShortenedUrl} />
+        <Form setShortenedUrl={setShortenedUrl} reset={reset} />
         {shortenedUrl !== "" && (
           <HStack justifyContent={"space-between"}>
             <Box>
