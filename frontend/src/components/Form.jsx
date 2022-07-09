@@ -7,6 +7,9 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+const URL_REGEX =
+  "https?://(www.)?[-a-zA-Z0-9@:%._+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)";
+
 const Form = () => {
   const {
     handleSubmit,
@@ -32,6 +35,11 @@ const Form = () => {
           placeholder="Example: https://google.com"
           {...register("url", {
             required: "Url is required",
+            pattern: {
+              value:
+                /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+              message: "Please enter valid url",
+            },
           })}
         />
         <FormErrorMessage>{errors.url && errors.url.message}</FormErrorMessage>
