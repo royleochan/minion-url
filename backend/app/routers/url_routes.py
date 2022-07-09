@@ -1,5 +1,6 @@
 
-from fastapi import Depends, APIRouter
+from fastapi import Depends, APIRouter, HTTPException
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 
 from ..database.database import get_db
@@ -13,12 +14,16 @@ router = APIRouter(
 )
 
 
-@router.get("/{shortened_url}", response_model=OriginalUrl)
-def get_original_url_by_shortened_url(shortened_url: str, db: Session = Depends(get_db)):
-    original_url = url_service.get_original_url_by_shortened_url(
+@router.get("/{shortened_url}")
+def forward_to_url(shortened_url: str, db: Session = Depends(get_db)):
+    url = url_service.get_url_by_shortened_url(
         db, shortened_url=shortened_url)
 
-    return original_url
+    if url:
+        return RedirectResponse(url.original_url)
+    else:
+        message = f"URL '{shortened_url}' does not exist"
+        raise HTTPException(status_code=404, detail=message)
 
 
 @router.post("/",  response_model=Url)
