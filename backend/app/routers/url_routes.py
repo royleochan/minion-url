@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.post("",  response_model=Url)
+@router.post("",  response_model=Url, status_code=201)
 def create_url(original_url: OriginalUrl, db: Session = Depends(get_db)):
     new_url = url_service.create_url(db=db, url_create=original_url)
 
