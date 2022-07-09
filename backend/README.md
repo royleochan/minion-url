@@ -32,6 +32,17 @@ pip install - r requirements.txt
 python3 main.py 8000
 ```
 
+## Testing
+
+1. Repeat steps above to activate a virtual environment
+
+2. Run using pytest
+```
+pytest
+```
+
+![Test](https://i.imgur.com/KuUqNMw.png)
+
 ## Deployment to Heroku with heroku cli and docker
 
 Build Image
