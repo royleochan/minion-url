@@ -1,13 +1,17 @@
-# Prerequisites
-## Developing
+# Minion Url Backend
+
+This project is written using FastAPI.
+
+## Prerequisites
+### Developing
 - Python3
 - Running postgres instance
 
-## Releasing
+### Releasing
 - Docker
 - Heroku
 
-# Setup on local
+## Setup on local
 
 1. Create .env at root according to `env_sample.txt` specified
 
@@ -28,7 +32,7 @@ pip install - r requirements.txt
 python3 main.py 8000
 ```
 
-# Deployment to Heroku with heroku cli and docker
+## Deployment to Heroku with heroku cli and docker
 
 Build Image
 ```
