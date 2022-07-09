@@ -38,7 +38,11 @@ def forward_to_url(shortened_url: str, db: Session = Depends(get_db)):
         db, shortened_url=shortened_url)
 
     if url:
-        return RedirectResponse(url.original_url)
+        original_url = url.original_url
+        prefix = original_url[:5]
+        if prefix != "https" or prefix[:-1] != "http":
+            original_url = "https://" + original_url
+        return RedirectResponse(original_url)
     else:
         message = f"URL '{shortened_url}' does not exist"
         raise HTTPException(status_code=404, detail=message)
