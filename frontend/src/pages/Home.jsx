@@ -18,7 +18,10 @@ const Home = () => {
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
-  const reset = () => setShortenedUrl("");
+  const reset = () => {
+    setShortenedUrl("");
+    setIsCopied(false);
+  };
 
   const handleCopyToClipboard = () => {
     setIsCopied(true);
