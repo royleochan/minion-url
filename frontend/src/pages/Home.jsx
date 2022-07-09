@@ -1,17 +1,8 @@
 import React from "react";
-import {
-  Flex,
-  Box,
-  Heading,
-  Text,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Input,
-  Button,
-} from "@chakra-ui/react";
+import { Flex, Box, Heading, Text } from "@chakra-ui/react";
 
 import minionBackground from "assets/minion.png";
+import Form from "components/Form";
 
 const Home = () => {
   return (
@@ -45,12 +36,7 @@ const Home = () => {
           border: "1px solid rgba(255, 255, 255, 0.3)",
         }}
       >
-        <FormControl>
-          <FormLabel htmlFor="email">URL to shorten:</FormLabel>
-          <Input id="url" />
-          <FormHelperText>Please key in a valid url.</FormHelperText>
-        </FormControl>
-        <Button sx={{ mt: 10 }}>Generate MinionURL</Button>
+        <Form />
       </Box>
     </Flex>
   );
